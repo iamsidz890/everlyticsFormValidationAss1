@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>everlyticsAssignment1</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<h1>Everlytics Assignment 1 (Form Validation)</h1>
+
+	<div class="container"><br>
+		
+		<div class="col-lg-6 m-auto d-block">
+			
+			<form action="#" onsubmit="return validation()" class="bg-light">
+				
+				<div class="form-group">
+					<label>Select your source : </label>
+					<input type="text" name="source" class="form-control" id="source" autocomplete="off" placeholder="Google Cloud Storage">
+					<span id="sourceerror" class="text-danger font-weight-bold"> </span>
+					<!-- for error.... -->
+				</div>
+
+				<div class="form-group">
+					<label > Provide a name for pipeline </label>
+					<input type="text" name="pipeline" class="form-control" id="pipeline" autocomplete="off" placeholder="e.g., cust_shop_energy_gateway001">
+					<span id="pipelineerror" class="text-danger font-weight-bold"> </span>
+				</div>
+
+				<div class="form-group">
+					<label> GCS project name : </label>
+					<input type="text" name="project" class="form-control" id="project" autocomplete="off" placeholder="project-id">
+					<span id="projecterror" class="text-danger font-weight-bold"> </span>
+				</div>
+
+				<div class="form-group">
+					<label> GCS bucket name : </label>
+					<input type="text" name="bucket" class="form-control" id="bucket" autocomplete="off" placeholder="gs://your-bucket">
+					<span id="bucketerror" class="text-danger font-weight-bold"> </span>
+				</div>
+
+				<div class="form-group">
+					<label> Input Cloud Storage File(s) : </label>
+					<input type="text" name="cloud" class="form-control" id="cloud" autocomplete="off" placeholder="GCS location of your files
+">
+					<span id="clouderror" class="text-danger font-weight-bold"> </span>
+				</div>
+				<div class="form-group">
+					<label > GCS credentials : </label>
+					<input type="text" name="credit" class="form-control" id="credit" autocomplete="off" placeholder="Example: gs://your-bucket/your-files/01.csv">
+					<span id="crediterror" class="text-danger font-weight-bold"> </span>
+				</div>
+				<div class="form-group">
+					<label > Run Every : </label>
+					<input type="text" name="minutes" class="form-control" id="minutes" autocomplete="off" placeholder="(in minutes)">
+					<span id="minuteserror" class="text-danger font-weight-bold"> </span>
+				</div>
+
+				<input type="submit" name="" value="Create" class="btn btn-primary col-lg-3" autocomplete="off">
+				
+				<button type="button" class="btn btn-danger col-lg-5">Cancel  </button>
+
+
+				
+
+			</form>
+			
+
+			<br><br>
+
+
+		</div>
+	</div>
+
+
+
+	<script type="text/javascript">
+		
+
+		function validation(){
+
+			var source = document.getElementById('source').value;
+			var pipeline = document.getElementById('pipeline').value;
+			var project = document.getElementById('project').value;
+			var bucket = document.getElementById('bucket').value;
+			var cloud = document.getElementById('cloud').value;
+			var credit = document.getElementById('credit').value;
+			var minutes = document.getElementById('minutes').value;
+
+
+
+
+
+			if(source == ""){
+				document.getElementById('sourceerror').innerHTML =" ** Please fill this source field";
+				return false;
+			}
+			if(source.length <= 5) {
+				document.getElementById('sourceerror').innerHTML =" ** The length must be greater than 5";
+				return false;	
+			}
+			if(!isNaN(source)){
+				document.getElementById('sourceerror').innerHTML =" ** only characters are allowed , dont use symbols..";
+				return false;
+			}
+			if (source.indexOf('+') >= 0) {
+				document.getElementById('sourceerror').innerHTML = " ** '+' Invalid Path. Dont use + , - or _ .....";
+				return false;
+			}
+			if (source.indexOf('-') >= 0) {
+				document.getElementById('sourceerror').innerHTML = " ** '-' Invalid Path. Dont use + , - or _ .....";
+				return false;
+			}
+			if (source.indexOf('_') >= 0) {
+				document.getElementById('sourceerror').innerHTML = " ** '_' Invalid Path. Dont use + , - or _ .....";
+				return false;
+			}
+			
+
+
+			if (pipeline == "") {
+				document.getElementById('pipelineerror').innerHTML = " ** Please fill this pipeline field";
+				return false;
+			}
+			if (pipeline.length <= 5) {
+				document.getElementById('pipelineerror').innerHTML = " ** The length must be greater than 5";
+				return false;
+			}
+			if (!isNaN(pipeline)) {
+				document.getElementById('pipelineerror').innerHTML = " ** only characters are allowed , dont use symbols..";
+				return false;
+			}
+			if (pipeline.indexOf('+') >= 0) {
+				document.getElementById('pipelineerror').innerHTML = " ** '+' Invalid Path. Dont use + , - or _ .....";
+				return false;
+			}
+			if (pipeline.indexOf('-') >= 0) {
+				document.getElementById('pipelineerror').innerHTML = " ** '-' Invalid Path. Dont use + , - or _ .....";
+				return false;
+			}
+			if (pipeline.indexOf('_') >= 0) {
+				document.getElementById('pipelineerror').innerHTML = " ** '_' Invalid Path. Dont use + , - or _ .....";
+				return false;
+			}
+
+
+
+
+
+			if (project == "") {
+				document.getElementById('projecterror').innerHTML = " ** Please fill this field";
+				return false;
+			}
+			if (project.length <= 5) {
+				document.getElementById('projecterror').innerHTML = " ** The length must be greater than 5";
+				return false;
+			}
+			if (!isNaN(project)) {
+				document.getElementById('projecterror').innerHTML = " ** only characters are allowed , dont use symbols..";
+				return false;
+			}
+			if (project.indexOf('+') >= 0) {
+				document.getElementById('projecterror').innerHTML = " ** '+' Invalid Path. Dont use + , - or _ .....";
+				return false;
+			}
+			if (project.indexOf('-') >= 0) {
+				document.getElementById('projecterror').innerHTML = " ** '-' Invalid Path. Dont use + , - or _ .....";
+				return false;
+			}
+			if (project.indexOf('_') >= 0) {
+				document.getElementById('projecterror').innerHTML = " ** '_' Invalid Path. Dont use + , - or _ .....";
+				return false;
+			}
+
+
+
+
+			if (bucket == "") {
+				document.getElementById('bucketerror').innerHTML = " ** Please fill this field";
+				return false;
+			}
+			if (bucket.length <= 5) {
+				document.getElementById('bucketerror').innerHTML = " ** The length must be greater than 5";
+				return false;
+			}
+			if (!isNaN(bucket)) {
+				document.getElementById('bucketerror').innerHTML = " ** only characters are allowed , dont use symbols..";
+				return false;
+			}
+			if (bucket.indexOf('+') >= 0) {
+				document.getElementById('bucketerror').innerHTML = " ** '+' Invalid Path. Dont use + , - or _ .....";
+				return false;
+			}
+			if (bucket.indexOf('-') >= 0) {
+				document.getElementById('bucketerror').innerHTML = " ** '-' Invalid Path. Dont use + , - or _ .....";
+				return false;
+			}
+			if (bucket.indexOf('_') >= 0) {
+				document.getElementById('bucketerror').innerHTML = " ** '_' Invalid Path. Dont use + , - or _ .....";
+				return false;
+			}
+
+			if (cloud == "") {
+				document.getElementById('clouderror').innerHTML = " ** Please fill this field";
+				return false;
+			}
+			if (cloud.length <= 5) {
+				document.getElementById('clouderror').innerHTML = " ** The length must be greater than 5";
+				return false;
+			}
+			if (!isNaN(cloud)) {
+				document.getElementById('clouderror').innerHTML = " ** only characters are allowed , dont use symbols..";
+				return false;
+			}
+			if (cloud.indexOf('+') >= 0) {
+				document.getElementById('clouderror').innerHTML = " ** '+' Invalid Path. Dont use + , - or _ .....";
+				return false;
+			}
+			if (cloud.indexOf('-') >= 0) {
+				document.getElementById('clouderror').innerHTML = " ** '-' Invalid Path. Dont use + , - or _ .....";
+				return false;
+			}
+			if (cloud.indexOf('_') >= 0) {
+				document.getElementById('clouderror').innerHTML = " ** '_' Invalid Path. Dont use + , - or _ .....";
+				return false;
+			}
+
+
+			if (credit == "") {
+				document.getElementById('crediterror').innerHTML = " ** Please fill this field";
+				return false;
+			}
+			if (credit.length <= 5) {
+				document.getElementById('crediterror').innerHTML = " ** The length must be greater than 5";
+				return false;
+			}
+			if (!isNaN(credit)) {
+				document.getElementById('crediterror').innerHTML = " ** only characters are allowed , dont use symbols..";
+				return false;
+			}
+			if (credit.indexOf('+') >= 0) {
+				document.getElementById('crediterror').innerHTML = " ** '+' Invalid Path. Dont use + , - or _ .....";
+				return false;
+			}
+			if (credit.indexOf('-') >= 0) {
+				document.getElementById('crediterror').innerHTML = " ** '-' Invalid Path. Dont use + , - or _ .....";
+				return false;
+			}
+			if (credit.indexOf('_') >= 0) {
+				document.getElementById('crediterror').innerHTML = " ** '_' Invalid Path. Dont use + , - or _ .....";
+				return false;
+			}
+
+			if (minutes == "") {
+				document.getElementById('minuteserror').innerHTML = " ** Please fill this field";
+				return false;
+			}
+			if (minutes.length <= 5) {
+				document.getElementById('minuteserror').innerHTML = " ** The length must be greater than 5";
+				return false;
+			}
+			if (!isNaN(minutes)) {
+				document.getElementById('minuteserror').innerHTML = " ** only characters are allowed , dont use symbols..";
+				return false;
+			}
+			if (minutes.indexOf('+') >= 0) {
+				document.getElementById('minuteserror').innerHTML = " ** '+' Invalid Path. Dont use + , - or _ .....";
+				return false;
+			}
+			if (minutes.indexOf('-') >= 0) {
+				document.getElementById('minuteserror').innerHTML = " ** '-' Invalid Path. Dont use + , - or _ .....";
+				return false;
+			}
+			if (minutes.indexOf('_') >= 0) {
+				document.getElementById('minuteserror').innerHTML = " ** '_' Invalid Path. Dont use + , - or _ .....";
+				return false;
+			}
+				
+
+				
+
+				
+
+				
+
+				
+
+				
+
+
+
+
+
+
+
+			
+
+
+
+
+			
+			
+		}
+
+	</script>
+
+</body>
+</html>
